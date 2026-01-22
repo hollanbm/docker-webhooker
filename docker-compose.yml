@@ -1,0 +1,15 @@
+services:
+  webhooker:
+    container_name: webhooker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-webhooker:latest
+    environment:
+      WEBHOOK_TOKEN: super-secret
+      CONTAINER_NAME: redis
+    ports:
+      - 8080:8080
+    volumes:
+      # Share the Docker engine socket from the Colima VM with the container
+      - /var/run/docker.sock:/var/run/docker.sock

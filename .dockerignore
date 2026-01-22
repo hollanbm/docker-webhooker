@@ -1,0 +1,5 @@
+# Ignore everything, whitelist what is needed
+*
+!pyproject.toml
+!uv.lock
+!server.py
