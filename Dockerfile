@@ -2,8 +2,13 @@ ARG UV_VERSION=0.9.24
 
 FROM ghcr.io/astral-sh/uv:${UV_VERSION}-debian AS builder
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Update system packages
-RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # https://docs.astral.sh/uv/reference/environment/
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_PREFERENCE=only-managed \
